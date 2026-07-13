@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Maahir Exchange</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           MAAHIR EXCHANGE - LOGIN PAGE STYLES
+           ============================================ */
+        
+        :root {
+            --bg-primary: #f8f9fc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-input: #f1f3f7;
+            --bg-nav: rgba(248, 249, 252, 0.92);
+            --text-primary: #0a0a1a;
+            --text-secondary: #4a4a6a;
+            --text-muted: #8a8aa8;
+            --border-color: #e2e5ed;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 32px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-gold: linear-gradient(135deg, #D4AF37, #B8860B);
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --blue: #3b82f6;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a14;
+            --bg-secondary: #12121f;
+            --bg-card: #1a1a2e;
+            --bg-input: #22223a;
+            --bg-nav: rgba(10, 10, 20, 0.92);
+            --text-primary: #f0f0f8;
+            --text-secondary: #b0b0c8;
+            --text-muted: #6a6a8a;
+            --border-color: #2a2a44;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-md: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            outline: none;
+        }
+
+        input {
+            font-family: inherit;
+            outline: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            padding: 0 16px;
+        }
+
+        .gold-text { color: var(--gold); }
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+        .relative { position: relative; }
+        .flex { display: flex; }
+        .flex-center { align-items: center; justify-content: center; }
+        .flex-between { justify-content: space-between; align-items: center; }
+        .flex-col { flex-direction: column; }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        .gap-16 { gap: 16px; }
+        .gap-24 { gap: 24px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .btn-gold {
+            background: var(--gradient-gold);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-outline-gold {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: transparent;
+        }
+        .btn-outline-gold:hover {
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        .btn-lg {
+            padding: 14px 40px;
+            font-size: 16px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 18px;
+            z-index: 1000;
+        }
+        .theme-toggle:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ============================================
+           LOGIN CARD
+           ============================================ */
+        .login-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.5s ease;
+        }
+
+        .login-card .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .login-card .logo .logo-icon {
+            background: var(--gradient-gold);
+            padding: 8px 12px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 18px;
+        }
+        .login-card .logo span {
+            color: var(--gold);
+        }
+
+        .login-card .subtitle {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 28px;
+        }
+
+        .login-card .form-group {
+            margin-bottom: 18px;
+        }
+        .login-card .form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+        .login-card .form-group .input-wrapper {
+            position: relative;
+        }
+        .login-card .form-group .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+        .login-card .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            padding-left: 44px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: var(--transition);
+        }
+        .login-card .form-group input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        .login-card .form-group .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 16px;
+            padding: 4px;
+            transition: var(--transition);
+        }
+        .login-card .form-group .toggle-password:hover {
+            color: var(--gold);
+        }
+
+        .login-card .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .login-card .form-options .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .login-card .form-options .remember-me input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+        .login-card .form-options .forgot-link {
+            color: var(--gold);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .login-card .form-options .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .login-card .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 20px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+        .login-card .divider::before,
+        .login-card .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .login-card .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .login-card .social-login .btn-social {
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .login-card .social-login .btn-social:hover {
+            border-color: var(--gold);
+            background: var(--bg-card);
+        }
+        .login-card .social-login .btn-social.google i {
+            color: #EA4335;
+        }
+        .login-card .social-login .btn-social.apple i {
+            color: var(--text-primary);
+        }
+
+        .login-card .register-link {
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .login-card .register-link a {
+            color: var(--gold);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .login-card .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           TOAST NOTIFICATION
+           ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 2000;
+            max-width: 400px;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+        .toast.error {
+            border-left: 4px solid var(--danger);
+        }
+        .toast .toast-icon {
+            font-size: 20px;
+        }
+        .toast.success .toast-icon {
+            color: var(--success);
+        }
+        .toast.error .toast-icon {
+            color: var(--danger);
+        }
+        .toast .toast-message {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 28px 20px;
+            }
+            .login-card .logo {
+                font-size: 20px;
+            }
+            .login-card .social-login {
+                grid-template-columns: 1fr;
+            }
+            .login-card .form-options {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            .toast {
+                left: 16px;
+                right: 16px;
+                max-width: none;
+                bottom: 16px;
+            }
+            .theme-toggle {
+                top: 12px;
+                right: 12px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Login Container -->
+    <div class="container">
+        <div class="login-card">
+            <!-- Logo -->
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                Maahir<span>Exchange</span>
+            </div>
+            <p class="subtitle text-center">Welcome back! Sign in to your account</p>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="john@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-link" onclick="alert('📧 Password reset link sent to your email!')">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-gold w-full btn-lg">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">or continue with</div>
+
+            <!-- Social Login -->
+            <div class="social-login">
+                <button class="btn-social google" onclick="socialLogin('Google')">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button class="btn-social apple" onclick="socialLogin('Apple')">
+                    <i class="fab fa-apple"></i> Apple
+                </button>
+            </div>
+
+            <!-- Register Link -->
+            <p class="register-link">
+                Don't have an account? <a href="register.html">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"><i class="fas fa-check-circle"></i></span>
+        <span class="toast-message" id="toastMessage">Success!</span>
+    </div>
+
+    <!-- ============================================
+    JAVASCRIPT
+    ============================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ---------- THEME TOGGLE ----------
+            const themeToggle = document.getElementById('themeToggle');
+            const html = document.documentElement;
+            
+            const savedTheme = localStorage.getItem('maahir-theme');
+            if (savedTheme) {
+                html.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                html.setAttribute('data-theme', 'dark');
+            }
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = html.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('maahir-theme', newTheme);
+                    updateThemeIcon(newTheme);
+                });
+            }
+            
+            function updateThemeIcon(theme) {
+                if (themeToggle) {
+                    const icon = themeToggle.querySelector('i');
+                    if (icon) {
+                        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    }
+                }
+            }
+            
+            const initialTheme = html.getAttribute('data-theme') || 'light';
+            updateThemeIcon(initialTheme);
+
+            // ---------- TOGGLE PASSWORD VISIBILITY ----------
+            window.togglePasswordVisibility = function(inputId, btn) {
+                const input = document.getElementById(inputId);
+                if (!input) return;
+                
+                const icon = btn.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            };
+
+            // ---------- TOAST SYSTEM ----------
+            function showToast(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                const toastMessage = document.getElementById('toastMessage');
+                const icon = toast.querySelector('.toast-icon i');
+                
+                if (!toast || !toastMessage) return;
+                
+                toast.className = `toast ${type}`;
+                toastMessage.textContent = message;
+                
+                if (type === 'success') {
+                    icon.className = 'fas fa-check-circle';
+                } else {
+                    icon.className = 'fas fa-exclamation-circle';
+                }
+                
+                toast.classList.add('show');
+                
+                clearTimeout(toast._timeout);
+                toast._timeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+            }
+
+            // ---------- HANDLE LOGIN ----------
+            window.handleLogin = function(event) {
+                event.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                if (!email || !password) {
+                    showToast('Please fill in all fields', 'error');
+                    return;
+                }
+                
+                if (!email.includes('@') || !email.includes('.')) {
+                    showToast('Please enter a valid email address', 'error');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    showToast('Password must be at least 6 characters', 'error');
+                    return;
+                }
+                
+                // Simulate login
+                const btn = event.target.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    // Check for demo credentials
+                    if (email === 'demo@maahir.com' && password === 'password123') {
+                        showToast('Welcome back! Redirecting to dashboard...', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    } else {
+                        showToast('Invalid credentials. Try demo@maahir.com / password123', 'error');
+                    }
+                }, 1500);
+            };
+
+            // ---------- SOCIAL LOGIN ----------
+            window.socialLogin = function(provider) {
+                showToast(`Connecting to ${provider}...`, 'success');
+                setTimeout(() => {
+                    showToast(`Successfully signed in with ${provider}!`, 'success');
+                }, 1500);
+            };
+
+            // ---------- ENTER KEY SUPPORT ----------
+            document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
