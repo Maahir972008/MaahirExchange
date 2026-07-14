@@ -6,6 +6,7 @@
     <title>Trade - Maahir Exchange</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* ============================================
            MAAHIR EXCHANGE - TRADE PAGE STYLES
@@ -509,20 +510,28 @@
 
         /* Market Data Ticker */
         .ticker {
-            display: flex;
-            gap: 24px;
             padding: 12px 16px;
             background: var(--bg-card);
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-color);
             margin-bottom: 16px;
-            overflow-x: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .ticker-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: ticker-scroll 24s linear infinite;
         }
         .ticker .ticker-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             white-space: nowrap;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.08);
         }
         .ticker .ticker-item .symbol {
             font-weight: 600;
@@ -541,6 +550,13 @@
         }
         .ticker .ticker-item .change.negative {
             color: var(--red);
+        }
+
+        .order-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
         }
 
         /* ============================================
@@ -599,6 +615,9 @@
             .trade-form .trade-buttons {
                 grid-template-columns: 1fr;
             }
+            .order-panels {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -615,6 +634,11 @@
         /* ============================================
            ANIMATIONS
            ============================================ */
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -646,6 +670,7 @@
                 <li><a href="wallet.html">Wallet</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="support.html">Support</a></li>
+                <li><a href="admin.html">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -669,7 +694,7 @@
 
             <!-- Ticker -->
             <div class="ticker animate-fade-up" id="ticker">
-                <!-- Will be populated by JS -->
+                <div class="ticker-track"></div>
             </div>
 
             <!-- Trading Grid -->
@@ -709,7 +734,7 @@
                     </div>
 
                     <!-- Order Book & Trade Form -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px;">
+                    <div class="order-panels">
                         <!-- Order Book -->
                         <div class="card">
                             <h4 style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">
@@ -774,6 +799,23 @@
     <!-- ============================================
     JAVASCRIPT
     ============================================ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h4>Live trading experience</h4>
+                <p>Fast-paced, sleek market screens with a responsive flow that stays useful on phones, tablets, and desktops.</p>
+            </div>
+            <div>
+                <h4>Platform</h4>
+                <p><a href="wallet.html">Wallet</a><br><a href="about.html">About</a><br><a href="support.html">Support</a></p>
+            </div>
+            <div>
+                <h4>Operations</h4>
+                <p><a href="admin.html">Admin panel</a><br><a href="maintenance.html">Maintenance</a></p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -848,6 +890,12 @@
                 { symbol: 'MATIC/USD', base: 'MATIC', quote: 'USD', price: 0.789, change: -0.98 },
                 { symbol: 'LINK/USD', base: 'LINK', quote: 'USD', price: 14.32, change: 2.11 },
                 { symbol: 'UNI/USD', base: 'UNI', quote: 'USD', price: 7.45, change: 1.89 },
+                { symbol: 'BNB/USD', base: 'BNB', quote: 'USD', price: 602.11, change: 1.76 },
+                { symbol: 'DOGE/USD', base: 'DOGE', quote: 'USD', price: 0.1894, change: -0.54 },
+                { symbol: 'TON/USD', base: 'TON', quote: 'USD', price: 5.36, change: 3.45 },
+                { symbol: 'TRX/USD', base: 'TRX', quote: 'USD', price: 0.0923, change: 2.11 },
+                { symbol: 'SHIB/USD', base: 'SHIB', quote: 'USD', price: 0.000021, change: 4.12 },
+                { symbol: 'SUI/USD', base: 'SUI', quote: 'USD', price: 1.29, change: 2.98 }
             ];
 
             let selectedPair = tradingPairs[0];
@@ -1048,15 +1096,16 @@
                 const ticker = document.getElementById('ticker');
                 if (!ticker) return;
                 
-                ticker.innerHTML = tradingPairs.map(pair => `
+                const items = [...tradingPairs, ...tradingPairs].map(pair => `
                     <div class="ticker-item">
                         <span class="symbol">${pair.symbol}</span>
-                        <span class="price">$${pair.price.toFixed(2)}</span>
+                        <span class="price">$${pair.price.toFixed(pair.price < 1 ? 4 : 2)}</span>
                         <span class="change ${pair.change >= 0 ? 'positive' : 'negative'}">
                             ${pair.change >= 0 ? '+' : ''}${pair.change.toFixed(2)}%
                         </span>
                     </div>
                 `).join('');
+                ticker.querySelector('.ticker-track').innerHTML = items;
             }
 
             // ---------- Update Chart ----------

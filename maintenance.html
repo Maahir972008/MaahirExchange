@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maintenance - Maahir Exchange</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0%, #0f172a 65%, #020617 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .maintenance-card {
+      width: min(640px, 100%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.35);
+      text-align: center;
+    }
+
+    .maintenance-card i {
+      font-size: 3rem;
+      color: #fbbf24;
+      margin-bottom: 16px;
+    }
+
+    .maintenance-card h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .maintenance-card p {
+      color: #cbd5e1;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .maintenance-card .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .maintenance-card a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .maintenance-card a.secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+  <main class="maintenance-card">
+    <i class="fas fa-tools"></i>
+    <h1>We’re improving the experience</h1>
+    <p>Maahir Exchange is currently under maintenance. Our team is polishing the platform, and you’ll be able to return shortly.</p>
+    <div class="actions">
+      <a href="admin.html"><i class="fas fa-user-shield"></i> Open admin panel</a>
+      <a class="secondary" href="index.html"><i class="fas fa-home"></i> Return home</a>
+    </div>
+  </main>
+  <script src="maintenance.js"></script>
+</body>
+</html>

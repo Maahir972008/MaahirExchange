@@ -6,6 +6,7 @@
     <title>Sign In - Maahir Exchange</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* ============================================
            MAAHIR EXCHANGE - LOGIN PAGE STYLES
@@ -68,6 +69,44 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .auth-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .auth-orb {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.28;
+            animation: drift 10s ease-in-out infinite;
+        }
+        .auth-orb-1 {
+            background: rgba(212, 175, 55, 0.3);
+            top: -110px;
+            left: -70px;
+        }
+        .auth-orb-2 {
+            background: rgba(59, 130, 246, 0.2);
+            right: -90px;
+            bottom: -110px;
+            animation-delay: 2.2s;
+        }
+        .auth-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 36px 36px;
+            mask-image: linear-gradient(120deg, rgba(0,0,0,0.9), transparent 80%);
+            animation: pulseGrid 10s linear infinite;
         }
 
         a {
@@ -103,6 +142,34 @@
             max-width: 480px;
             width: 100%;
             padding: 0 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            inset: auto;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.35;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        body::before {
+            background: rgba(212, 175, 55, 0.28);
+            top: -80px;
+            left: -60px;
+        }
+        body::after {
+            background: rgba(59, 130, 246, 0.2);
+            bottom: -90px;
+            right: -70px;
+            animation-delay: 2s;
         }
 
         .gold-text { color: var(--gold); }
@@ -183,12 +250,35 @@
            LOGIN CARD
            ============================================ */
         .login-card {
+            position: relative;
+            z-index: 1;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             padding: 40px 36px;
             box-shadow: var(--shadow-lg);
-            animation: slideUp 0.5s ease;
+            animation: slideUp 0.6s ease;
+            overflow: hidden;
+        }
+        .login-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.14), transparent 45%, rgba(59, 130, 246, 0.12));
+            pointer-events: none;
+        }
+        .login-card .crypto-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto 16px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 600;
+            animation: pulse 2.6s ease-in-out infinite;
         }
 
         .login-card .logo {
@@ -243,6 +333,7 @@
             width: 100%;
             padding: 12px 14px;
             padding-left: 44px;
+            padding-right: 48px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-color);
             background: var(--bg-input);
@@ -256,14 +347,18 @@
         }
         .login-card .form-group .toggle-password {
             position: absolute;
-            right: 14px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
-            background: transparent;
+            background: rgba(212, 175, 55, 0.12);
             color: var(--text-muted);
-            font-size: 16px;
-            padding: 4px;
+            font-size: 15px;
+            padding: 6px 8px;
+            border-radius: 8px;
             transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .login-card .form-group .toggle-password:hover {
             color: var(--gold);
@@ -407,6 +502,14 @@
         /* ============================================
            ANIMATIONS
            ============================================ */
+        @keyframes drift {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(20px, -18px, 0) scale(1.08); }
+        }
+        @keyframes pulseGrid {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(24px); }
+        }
         @keyframes slideUp {
             from {
                 opacity: 0;
@@ -458,6 +561,12 @@
 </head>
 <body>
 
+    <div class="auth-bg" aria-hidden="true">
+        <div class="auth-orb auth-orb-1"></div>
+        <div class="auth-orb auth-orb-2"></div>
+        <div class="auth-grid"></div>
+    </div>
+
     <!-- Theme Toggle -->
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
         <i class="fas fa-moon"></i>
@@ -472,6 +581,7 @@
                 Maahir<span>Exchange</span>
             </div>
             <p class="subtitle text-center">Welcome back! Sign in to your account</p>
+            <div class="crypto-pill"><i class="fas fa-coins"></i> Secure crypto access</div>
 
             <!-- Login Form -->
             <form id="loginForm" onsubmit="handleLogin(event)">
@@ -536,6 +646,23 @@
     <!-- ============================================
     JAVASCRIPT
     ============================================ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h4>Welcome back</h4>
+                <p>Secure sign-in flow with a polished experience that feels complete on every screen size.</p>
+            </div>
+            <div>
+                <h4>Help</h4>
+                <p><a href="register.html">Create account</a><br><a href="support.html">Support center</a></p>
+            </div>
+            <div>
+                <h4>Site tools</h4>
+                <p><a href="admin.html">Maintenance</a><br><a href="index.html">Home</a></p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             

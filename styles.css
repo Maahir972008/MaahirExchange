@@ -1,0 +1,127 @@
+:root {
+  --accent: #d4af37;
+  --accent-strong: #b8860b;
+  --accent-soft: rgba(212, 175, 55, 0.12);
+  --surface: #ffffff;
+  --surface-muted: #f6f7fb;
+  --text-strong: #0f172a;
+  --text-soft: #5b6476;
+  --border: rgba(15, 23, 42, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  padding-bottom: 140px;
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+.maintenance-banner {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+}
+
+.maintenance-banner a {
+  color: #fef3c7;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.site-footer {
+  margin-top: 48px;
+  padding: 32px 24px 48px;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #e5e7eb;
+}
+
+.site-footer .footer-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 24px;
+}
+
+.site-footer h4 {
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.site-footer p,
+.site-footer a {
+  color: #cbd5e1;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+}
+
+.floating-admin-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1300;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.floating-admin-btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  body {
+    padding-bottom: 160px;
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .maintenance-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .site-footer {
+    padding: 24px 16px 40px;
+  }
+
+  .floating-admin-btn {
+    right: 14px;
+    bottom: 14px;
+  }
+}

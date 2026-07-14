@@ -6,6 +6,7 @@
     <title>Maahir Exchange - Trade Crypto Securely</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* ============================================
            MAAHIR EXCHANGE - COMPLETE HOME PAGE STYLES
@@ -318,6 +319,83 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.22;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero::before {
+            background: rgba(212, 175, 55, 0.3);
+            top: -120px;
+            right: -40px;
+        }
+        .hero::after {
+            background: rgba(59, 130, 246, 0.2);
+            left: -60px;
+            bottom: -80px;
+            animation-delay: 2s;
+        }
+
+        .ticker-shell {
+            position: absolute;
+            top: 92px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1120px, calc(100% - 32px));
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(10, 10, 20, 0.72);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(12px);
+        }
+        .ticker-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .ticker-strip {
+            display: flex;
+            gap: 16px;
+            overflow: hidden;
+            flex: 1;
+        }
+        .ticker-strip .ticker-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: #f8fafc;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            animation: tickerFade 0.5s ease;
+        }
+        .ticker-strip .ticker-pill .price {
+            color: #4ade80;
+        }
+        .ticker-strip .ticker-pill .price.down {
+            color: #f87171;
         }
 
         .hero-container {
@@ -327,6 +405,21 @@
             align-items: center;
         }
 
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            animation: pulse 2.6s ease-in-out infinite;
+        }
         .hero-content h1 {
             font-size: 56px;
             font-weight: 900;
@@ -384,6 +477,7 @@
             border-radius: 44px;
             padding: 16px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255,255,255,0.06);
+            transform-style: preserve-3d;
         }
         .phone-mockup .screen {
             background: linear-gradient(160deg, #1a1a2e, #12121f);
@@ -490,6 +584,70 @@
             border-radius: 50%;
             color: var(--gold);
             font-size: 14px;
+        }
+
+        .phone-mockup .dashboard-stack {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .phone-mockup .portfolio-badge {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.16), rgba(59, 130, 246, 0.14));
+            color: #fff;
+            font-size: 13px;
+        }
+        .phone-mockup .portfolio-badge strong {
+            font-size: 15px;
+            color: var(--gold);
+        }
+        .phone-mockup .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .phone-mockup .mini-stat {
+            padding: 8px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            text-align: center;
+            color: rgba(255,255,255,0.75);
+            font-size: 11px;
+        }
+        .phone-mockup .mini-stat strong {
+            display: block;
+            margin-top: 2px;
+            color: #4ade80;
+            font-size: 12px;
+        }
+        .phone-mockup .hero-chart-card {
+            margin: 12px 0 16px;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .phone-mockup .hero-chart-card .chart-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 8px;
+        }
+        .phone-mockup .hero-chart-card .chart-top .chip {
+            color: #4ade80;
+            font-weight: 700;
+        }
+        .phone-mockup .hero-chart-card canvas {
+            width: 100%;
+            height: 120px;
+            display: block;
         }
 
         .phone-mockup .rate-display {
@@ -746,6 +904,15 @@
         }
 
         @media (max-width: 768px) {
+            .hero {
+                padding-top: 150px;
+            }
+            .ticker-shell {
+                top: 110px;
+                flex-direction: column;
+                align-items: flex-start;
+                border-radius: 20px;
+            }
             .hero-content h1 {
                 font-size: 36px;
             }
@@ -778,6 +945,9 @@
                 height: 540px;
                 padding: 12px;
             }
+            .phone-mockup .mini-stats {
+                grid-template-columns: 1fr;
+            }
             .phone-mockup .screen {
                 padding: 16px 14px;
             }
@@ -789,6 +959,11 @@
         /* ============================================
            ANIMATIONS
            ============================================ */
+        @keyframes tickerFade {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -837,6 +1012,7 @@
                 <li><a href="wallet.html">Wallet</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="support.html">Support</a></li>
+                <li><a href="admin.html">Admin</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -856,8 +1032,13 @@
     HERO SECTION
     ============================================ -->
     <section class="hero">
+        <div class="ticker-shell" aria-label="Live market ticker">
+            <div class="ticker-label"><i class="fas fa-chart-line"></i> Live market pulse</div>
+            <div class="ticker-strip" id="marketTicker"></div>
+        </div>
         <div class="container hero-container">
             <div class="hero-content animate-fade-up">
+                <div class="hero-badge"><i class="fas fa-sparkles"></i> Live crypto intelligence</div>
                 <h1>Trade & Store Crypto <br><span class="highlight">Securely</span></h1>
                 <p>Maahir Exchange offers institutional-grade security with a simple, intuitive interface for trading and storing your digital assets.</p>
 
@@ -936,6 +1117,26 @@
                                     <div class="amount-usd">≈ $9,498</div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="dashboard-stack">
+                            <div class="portfolio-badge">
+                                <span>Portfolio</span>
+                                <strong>$148.2K</strong>
+                            </div>
+                            <div class="mini-stats">
+                                <div class="mini-stat"><span>BTC</span><strong>+2.1%</strong></div>
+                                <div class="mini-stat"><span>ETH</span><strong>+1.6%</strong></div>
+                                <div class="mini-stat"><span>SOL</span><strong>+5.8%</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="hero-chart-card">
+                            <div class="chart-top">
+                                <span>BTC / USD</span>
+                                <span class="chip">+4.3%</span>
+                            </div>
+                            <canvas id="heroChart"></canvas>
                         </div>
 
                         <!-- Rate Display -->
@@ -1073,6 +1274,23 @@
     <!-- ============================================
     JAVASCRIPT
     ============================================ -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div>
+                <h4>Maahir Exchange</h4>
+                <p>Secure, modern crypto trading experiences built for ambitious investors and fast-moving teams.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <p><a href="trade.html">Trade</a><br><a href="wallet.html">Wallet</a><br><a href="support.html">Support</a></p>
+            </div>
+            <div>
+                <h4>Admin</h4>
+                <p><a href="admin.html">Maintenance control</a><br><a href="maintenance.html">View maintenance page</a></p>
+            </div>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
@@ -1134,6 +1352,39 @@
                 });
             }
             
+            // ---------- LIVE MARKET TICKER ----------
+            const marketTicker = document.getElementById('marketTicker');
+            const tickerItems = [
+                { symbol: 'BTC', price: 67432.50, change: 2.34 },
+                { symbol: 'ETH', price: 3456.80, change: -1.23 },
+                { symbol: 'SOL', price: 187.23, change: 3.21 },
+                { symbol: 'XRP', price: 0.6234, change: 4.56 },
+                { symbol: 'DOGE', price: 0.1894, change: -0.78 }
+            ];
+
+            function updateMarketTicker() {
+                if (!marketTicker) return;
+                const markup = tickerItems.map(item => `
+                    <span class="ticker-pill">
+                        <i class="fas fa-coins"></i>
+                        <strong>${item.symbol}</strong>
+                        <span class="price ${item.change < 0 ? 'down' : ''}">$${item.price.toFixed(item.symbol === 'BTC' ? 2 : item.symbol === 'ETH' ? 2 : 4)}</span>
+                        <span class="${item.change < 0 ? 'down' : ''}">${item.change >= 0 ? '+' : ''}${item.change.toFixed(2)}%</span>
+                    </span>
+                `).join('');
+                marketTicker.innerHTML = markup + markup;
+            }
+
+            updateMarketTicker();
+            setInterval(() => {
+                tickerItems.forEach(item => {
+                    const swing = item.price * (Math.random() * 0.004 - 0.002);
+                    item.price = Math.max(item.price + swing, item.price * 0.95);
+                    item.change = Number((item.change + (Math.random() - 0.5) * 1.4).toFixed(2));
+                });
+                updateMarketTicker();
+            }, 3000);
+
             // ---------- ACTIVE NAV LINK ----------
             const currentPath = window.location.pathname.split('/').pop() || 'index.html';
             document.querySelectorAll('.nav-links a').forEach(link => {
@@ -1142,6 +1393,66 @@
                     link.classList.add('active');
                 }
             });
+
+            // ---------- CRYPTO HERO CHART ----------
+            const heroChart = document.getElementById('heroChart');
+            if (heroChart) {
+                const ctx = heroChart.getContext('2d');
+                let heroChartFrame = 0;
+
+                function drawHeroChart() {
+                    const width = heroChart.clientWidth;
+                    const height = heroChart.clientHeight;
+                    if (!width || !height) return;
+
+                    const dpr = window.devicePixelRatio || 1;
+                    heroChart.width = width * dpr;
+                    heroChart.height = height * dpr;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.clearRect(0, 0, width, height);
+
+                    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+                    ctx.lineWidth = 1;
+                    for (let i = 0; i < 4; i++) {
+                        const y = 20 + i * 24;
+                        ctx.beginPath();
+                        ctx.moveTo(8, y);
+                        ctx.lineTo(width - 8, y);
+                        ctx.stroke();
+                    }
+
+                    const points = Array.from({ length: 24 }, (_, index) => {
+                        const x = 10 + (index / 23) * (width - 20);
+                        const wave = Math.sin(index * 0.55 + heroChartFrame / 18) * 22;
+                        const drift = Math.cos(index * 0.25 + heroChartFrame / 32) * 11;
+                        const y = height / 2 + wave + drift;
+                        return { x, y };
+                    });
+
+                    ctx.beginPath();
+                    points.forEach((point, index) => {
+                        if (index === 0) ctx.moveTo(point.x, point.y);
+                        else ctx.lineTo(point.x, point.y);
+                    });
+                    ctx.strokeStyle = '#fbbf24';
+                    ctx.lineWidth = 2.8;
+                    ctx.stroke();
+
+                    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                    gradient.addColorStop(0, 'rgba(251, 191, 36, 0.34)');
+                    gradient.addColorStop(1, 'rgba(251, 191, 36, 0.03)');
+                    ctx.lineTo(width - 10, height - 8);
+                    ctx.lineTo(10, height - 8);
+                    ctx.closePath();
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+
+                    heroChartFrame += 1;
+                    requestAnimationFrame(drawHeroChart);
+                }
+
+                drawHeroChart();
+            }
 
             // ---------- INTERSECTION OBSERVER FOR ANIMATIONS ----------
             if ('IntersectionObserver' in window) {
