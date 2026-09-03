@@ -19,7 +19,6 @@ html {
 
 body {
   min-height: 100vh;
-  padding-bottom: 140px;
   background: var(--surface-muted);
   color: var(--text-strong);
 }
@@ -47,17 +46,46 @@ body {
 }
 
 .site-footer {
+  position: relative;
+  overflow: hidden;
   margin-top: 48px;
-  padding: 32px 24px 48px;
-  background: linear-gradient(135deg, #111827, #1f2937);
+  padding: 56px 24px 24px;
+  background: #0b1020;
   color: #e5e7eb;
+  border-top: 1px solid rgba(212, 175, 55, 0.28);
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.8;
+}
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(212, 175, 55, 0.28);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(560px, 80%);
+  height: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
 .site-footer .footer-grid {
   max-width: 1120px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
   gap: 24px;
 }
 
@@ -72,6 +100,211 @@ body {
   color: #cbd5e1;
   line-height: 1.8;
   font-size: 0.95rem;
+}
+
+.site-footer a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer a:hover {
+  transform: translateX(3px);
+}
+
+/* Shared responsive controls for pages with their own inline styles. */
+.mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--accent);
+}
+
+@media (max-width: 992px) {
+  .navbar .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mobile-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    order: 5;
+  }
+
+  .mobile-toggle i {
+    font-size: 0;
+  }
+
+  .mobile-toggle i::before {
+    content: "\f142";
+    font-size: 18px;
+  }
+
+  .mobile-toggle i.fa-times::before {
+    content: "\f00d";
+  }
+
+  .nav-links {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 12px !important;
+    right: 12px !important;
+    padding: 10px !important;
+    gap: 4px !important;
+    border: 1px solid var(--accent) !important;
+    border-radius: 14px !important;
+    background: rgba(11, 16, 32, 0.98) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  .nav-links.open {
+    display: flex !important;
+    animation: menuDrop 0.2s ease-out;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 9px;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(212, 175, 55, 0.12);
+  }
+
+  .nav-actions .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0 !important;
+    border-radius: 10px;
+    font-size: 0 !important;
+  }
+
+  .nav-actions .btn::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 16px;
+  }
+
+  .nav-actions .btn-outline-gold::before {
+    content: "\f2bd";
+  }
+
+  .nav-actions .btn-gold::before {
+    content: "\f234";
+  }
+
+  .ticker,
+  .ticker-shell,
+  .ticker-strip {
+    max-width: 100%;
+  }
+
+  .ticker-track,
+  .ticker-strip {
+    will-change: transform;
+    animation-duration: 18s !important;
+  }
+
+  #marketTicker {
+    width: max-content;
+    flex: 0 0 auto;
+    will-change: transform;
+    animation: ticker-marquee 22s linear infinite;
+  }
+}
+
+@keyframes menuDrop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ticker-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 0;
+  }
+
+  .logo {
+    font-size: 16px !important;
+    gap: 6px !important;
+  }
+
+  .logo-icon {
+    padding: 6px 8px !important;
+  }
+
+  .nav-actions {
+    gap: 6px !important;
+  }
+
+  .theme-toggle,
+  .mobile-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .ticker,
+  .ticker-shell {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 10px;
+  }
+
+  .ticker-track {
+    gap: 8px;
+    animation-duration: 14s !important;
+  }
+
+  #marketTicker {
+    animation-duration: 14s;
+  }
+
+  .site-footer {
+    margin-top: 32px;
+    padding: 40px 18px 22px;
+  }
+
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 18px;
+  }
+
+  .footer .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px 18px !important;
+  }
+
+  .footer .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer .footer-grid > :first-child {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer p,
+  .site-footer a {
+    font-size: 0.88rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .site-footer a:hover {
@@ -100,10 +333,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  body {
-    padding-bottom: 160px;
-  }
-
   .site-footer .footer-grid {
     grid-template-columns: 1fr;
   }
