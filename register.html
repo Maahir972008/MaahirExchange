@@ -293,11 +293,14 @@
             margin-bottom: 8px;
         }
         .register-card .logo .logo-icon {
-            background: var(--gradient-gold);
-            padding: 8px 12px;
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
             border-radius: 12px;
-            color: #fff;
-            font-size: 18px;
+            display: inline-block;
+            background: transparent;
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(32, 201, 151, 0.14);
         }
         .register-card .logo span {
             color: var(--gold);
@@ -324,8 +327,13 @@
         }
         .register-card .form-group .input-wrapper i {
             position: absolute;
-            left: 14px;
+            left: 12px;
             top: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transform: translateY(-50%);
             color: var(--text-muted);
             font-size: 16px;
@@ -342,7 +350,7 @@
         .register-card .form-group input {
             width: 100%;
             padding: 12px 14px;
-            padding-left: 44px;
+            padding-left: 42px;
             padding-right: 48px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-color);
@@ -598,7 +606,7 @@
         <div class="register-card">
             <!-- Logo -->
             <div class="logo">
-                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                <img class="logo-icon" src="Maahir exchange.png" alt="Maahir Exchange Logo">
                 Maahir<span>Exchange</span>
             </div>
             <p class="subtitle text-center">Create your free account today</p>

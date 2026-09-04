@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="Maahir exchange.png" type="image/x-icon">
     <style>
         /* ============================================
            MAAHIR EXCHANGE - COMPLETE HOME PAGE STYLES
@@ -250,8 +251,9 @@
 
         .navbar .container {
             max-width: 1280px;
-            width: min(1280px, calc(100% - 32px));
+            width: 100%;
             margin: 0 auto;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -269,11 +271,14 @@
             letter-spacing: -0.5px;
         }
         .logo-icon {
-            background: var(--gradient-gold);
-            padding: 8px 12px;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            border-radius: 10px;
+            display: inline-block;
+            background: transparent;
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(32, 201, 151, 0.14);
         }
         .logo span {
             color: var(--gold);
@@ -381,6 +386,9 @@
             border: 1px solid rgba(32, 201, 151, 0.22);
             box-shadow: 0 12px 30px rgba(0,0,0,0.2);
             backdrop-filter: blur(12px);
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
         }
         .ticker-label {
             display: inline-flex;
@@ -390,6 +398,7 @@
             font-size: 13px;
             font-weight: 700;
             white-space: nowrap;
+            flex-shrink: 0;
         }
         .ticker-strip {
             display: flex;
@@ -397,6 +406,11 @@
             overflow: hidden;
             flex: 1;
             min-width: 0;
+            width: max-content;
+            animation: ticker-marquee 22s linear infinite;
+            will-change: transform;
+            mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
         }
         .ticker-strip .ticker-pill {
             display: inline-flex;
@@ -410,8 +424,8 @@
             font-size: 12px;
             font-weight: 600;
             white-space: nowrap;
-            animation: tickerFade 0.5s ease;
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+            flex-shrink: 0;
         }
         .ticker-strip .ticker-pill i {
             color: var(--gold);
@@ -915,6 +929,9 @@
         }
 
         @media (max-width: 992px) {
+            .navbar .container {
+                padding: 0 14px;
+            }
             .nav-links {
                 display: none;
                 position: absolute;
@@ -932,7 +949,17 @@
                 display: flex;
             }
             .mobile-toggle {
-                display: block;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                padding: 0;
+                border-radius: 50%;
+                border: 1px solid var(--border-color);
+                background: rgba(32, 201, 151, 0.04);
+                color: var(--text-primary);
+                font-size: 14px;
             }
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
@@ -1038,7 +1065,7 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                <img class="logo-icon" src="Maahir exchange.png" alt="Maahir Exchange Logo" class="logo-icon">
                 Maahir<span>Exchange</span>
             </a>
 
@@ -1260,7 +1287,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                        <img class="logo-icon" src="Maahir exchange.png" alt="Maahir Exchange Logo">
                         Maahir<span>Exchange</span>
                     </a>
                     <p>Secure cryptocurrency exchange and wallet platform since 2020.</p>

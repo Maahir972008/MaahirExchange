@@ -221,8 +221,9 @@
 
         .navbar .container {
             max-width: 1280px;
-            width: min(1280px, calc(100% - 32px));
+            width: 100%;
             margin: 0 auto;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -238,11 +239,14 @@
             letter-spacing: -0.5px;
         }
         .logo-icon {
-            background: var(--gradient-gold);
-            padding: 6px 10px;
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
             border-radius: 10px;
-            color: #fff;
-            font-size: 14px;
+            display: inline-block;
+            background: transparent;
+            padding: 0;
+            box-shadow: 0 4px 12px rgba(32, 201, 151, 0.14);
         }
         .logo span {
             color: var(--gold);
@@ -612,6 +616,9 @@
            RESPONSIVE
            ============================================ */
         @media (max-width: 992px) {
+            .navbar .container {
+                padding: 0 14px;
+            }
             .nav-links {
                 display: none;
                 position: absolute;
@@ -629,7 +636,17 @@
                 display: flex;
             }
             .mobile-toggle {
-                display: block;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                border: 1px solid var(--border-color);
+                background: rgba(32, 201, 151, 0.04);
+                color: var(--text-primary);
+                font-size: 16px;
+                padding: 0;
             }
 
             .wallet-header .total-balance {
@@ -677,7 +694,7 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <span class="logo-icon"><i class="fas fa-bolt"></i></span>
+                <img class="logo-icon" src="Maahir exchange.png" alt="Maahir Exchange Logo">
                 Maahir<span>Exchange</span>
             </a>
 
