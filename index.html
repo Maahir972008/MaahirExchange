@@ -232,16 +232,32 @@
             z-index: 1000;
             background: var(--bg-nav);
             border-bottom: 1px solid var(--border-color);
-            padding: 12px 0;
+            padding: 10px 0;
             transition: var(--transition);
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.04);
+        }
+        .navbar::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(32, 201, 151, 0.6), transparent);
+            opacity: 0.8;
         }
 
         .navbar .container {
+            max-width: 1280px;
+            width: min(1280px, calc(100% - 32px));
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .logo {
@@ -293,6 +309,9 @@
         .nav-links a:hover::after,
         .nav-links a.active::after {
             width: 100%;
+        }
+        .nav-links a:hover {
+            text-shadow: 0 0 12px rgba(32, 201, 151, 0.28);
         }
 
         .nav-actions {
@@ -377,19 +396,26 @@
             gap: 16px;
             overflow: hidden;
             flex: 1;
+            min-width: 0;
         }
         .ticker-strip .ticker-pill {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 10px;
+            padding: 7px 12px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.06);
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            border: 1px solid rgba(255,255,255,0.06);
             color: #f8fafc;
             font-size: 12px;
             font-weight: 600;
             white-space: nowrap;
             animation: tickerFade 0.5s ease;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .ticker-strip .ticker-pill i {
+            color: var(--gold);
+            font-size: 11px;
         }
         .ticker-strip .ticker-pill .price {
             color: #4ade80;
@@ -426,12 +452,14 @@
             line-height: 1.08;
             margin-bottom: 20px;
             letter-spacing: -1.5px;
+            text-shadow: 0 0 18px rgba(32, 201, 151, 0.1);
         }
         .hero-content h1 .highlight {
             background: var(--gradient-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: none;
         }
         .hero-content p {
             font-size: 18px;
@@ -478,6 +506,14 @@
             padding: 16px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255,255,255,0.06);
             transform-style: preserve-3d;
+        }
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            inset: 14px;
+            border-radius: 30px;
+            background: radial-gradient(circle at top left, rgba(32, 201, 151, 0.12), transparent 38%);
+            pointer-events: none;
         }
         .phone-mockup .screen {
             background: linear-gradient(160deg, #1a1a2e, #12121f);

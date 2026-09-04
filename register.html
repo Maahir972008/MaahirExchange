@@ -329,6 +329,15 @@
             transform: translateY(-50%);
             color: var(--text-muted);
             font-size: 16px;
+            transition: var(--transition);
+        }
+        .register-card .form-group .input-wrapper:focus-within {
+            box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.12);
+            border-radius: var(--radius-sm);
+        }
+        .register-card .form-group .input-wrapper:focus-within i {
+            color: var(--gold);
+            transform: translateY(-50%) scale(1.08);
         }
         .register-card .form-group input {
             width: 100%;
@@ -345,6 +354,7 @@
         .register-card .form-group input:focus {
             border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(32, 201, 151, 0.1);
+            background: rgba(255,255,255,0.02);
         }
         .register-card .form-group .toggle-password {
             position: absolute;
@@ -360,9 +370,12 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            border: 1px solid rgba(32, 201, 151, 0.16);
         }
         .register-card .form-group .toggle-password:hover {
             color: var(--gold);
+            transform: translateY(-50%) scale(1.04);
+            box-shadow: 0 6px 16px rgba(32, 201, 151, 0.12);
         }
 
         .register-card .form-group .password-hint {
