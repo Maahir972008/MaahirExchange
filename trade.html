@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="Maahir exchange.png" type="image/x-icon">
     <style>
         /* ============================================
            MAAHIR EXCHANGE - TRADE PAGE STYLES
@@ -629,8 +630,24 @@
             .chart-container {
                 height: 280px;
             }
+            .chart-header {
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .chart-header .price-info {
+                min-width: 0;
+                gap: 8px;
+            }
             .chart-header .price-info .current-price {
-                font-size: 22px;
+                font-size: 20px;
+            }
+            .chart-tabs {
+                flex-shrink: 0;
+                gap: 2px;
+            }
+            .chart-tabs button {
+                padding: 4px 7px;
+                font-size: 11px;
             }
             .ticker {
                 gap: 12px;
@@ -648,9 +665,19 @@
                 padding: 0 12px;
             }
             .chart-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                flex-direction: row;
+                align-items: center;
+            }
+            .chart-header .price-info .change {
+                display: none;
+            }
+            .chart-tabs {
+                overflow-x: auto;
+                max-width: 52%;
+                scrollbar-width: none;
+            }
+            .chart-tabs::-webkit-scrollbar {
+                display: none;
             }
         }
 
@@ -962,7 +989,7 @@
                 canvas.style.width = (rect.width - 32) + 'px';
                 canvas.style.height = (rect.height - 70) + 'px';
                 
-                ctx.scale(dpr, dpr);
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
                 
                 const width = canvas.width / dpr;
                 const height = canvas.height / dpr;
@@ -1213,9 +1240,9 @@
             // ---------- Simulate Price Updates ----------
             function simulatePriceUpdates() {
                 setInterval(() => {
-                    const change = (Math.random() - 0.5) * selectedPair.price * 0.005;
+                    const change = (Math.random() - 0.5) * selectedPair.price * 0.0012;
                     selectedPair.price = Math.max(selectedPair.price + change, selectedPair.price * 0.95);
-                    selectedPair.change = (Math.random() - 0.3) * 3;
+                    selectedPair.change = (Math.random() - 0.3) * 1.2;
                     
                     // Update UI
                     const currentPrice = document.getElementById('currentPrice');
@@ -1240,7 +1267,7 @@
                     populatePairs();
                     updateOrderBook();
                     updateTicker();
-                }, 5000);
+                }, 3000);
             }
 
             // ---------- Resize Handler ----------
@@ -1283,5 +1310,6 @@
         });
     </script>
 
+    <script src="audio.js"></script>
 </body>
 </html>

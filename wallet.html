@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="Maahir exchange.png" type="image/x-icon">
     <style>
         /* ============================================
            MAAHIR EXCHANGE - WALLET PAGE STYLES
@@ -395,6 +396,13 @@
         .asset-card .asset-icon.usdt { background: linear-gradient(135deg, #26A17B, #1A7A5E); }
         .asset-card .asset-icon.default { background: var(--gradient-gold); }
 
+        .portfolio-icon {
+            color: #000000 !important;
+            display: inline-block;
+            width: 1.1em;
+            text-align: center;
+        }
+
         .asset-card .asset-symbol {
             font-weight: 700;
             font-size: 16px;
@@ -679,6 +687,9 @@
             .container {
                 padding: 0 12px;
             }
+            .portfolio-icon {
+                width: 1em;
+            }
             .wallet-header .total-balance {
                 font-size: 24px;
             }
@@ -758,7 +769,7 @@
 
             <!-- Assets Grid -->
             <h3 style="margin-bottom: 16px; font-size: 18px;">
-                <i class="fas fa-coins gold-text"></i> Your Assets
+                <i class="fas fa-coins portfolio-icon"></i> Your Assets
             </h3>
             <div class="asset-grid" id="assetGrid">
                 <!-- Populated by JS -->
@@ -1203,5 +1214,6 @@
         });
     </script>
 
+    <script src="audio.js"></script>
 </body>
 </html>
