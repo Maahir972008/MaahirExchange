@@ -995,11 +995,13 @@
                 grid.innerHTML = assets.map(asset => `
                     <div class="asset-card" onclick="openDepositModal('${asset.symbol}')">
                         <div class="asset-icon ${asset.icon}">
-                            <i class="${asset.icon === 'sol' ? 'fas fa-bolt' : `fab fa-${asset.icon === 'btc' ? 'bitcoin' : 
-                                        asset.icon === 'eth' ? 'ethereum' : 
-                                        asset.icon === 'xrp' ? 'fa-water' : 
-                                        asset.icon === 'ada' ? 'fa-database' : 
-                                        asset.icon === 'usdt' ? 'fa-dollar-sign' : 'fa-coins'}`}"></i>
+                            <i class="${asset.icon === 'btc' ? 'fab fa-bitcoin' :
+                                        asset.icon === 'eth' ? 'fab fa-ethereum' :
+                                        asset.icon === 'xrp' ? 'fas fa-water' :
+                                        asset.icon === 'sol' ? 'fas fa-bolt' :
+                                        asset.icon === 'ada' ? 'fas fa-database' :
+                                        asset.icon === 'usdt' ? 'fas fa-dollar-sign' :
+                                        'fas fa-coins'}"></i>
                         </div>
                         <div class="asset-symbol">${asset.symbol}</div>
                         <div class="asset-balance">${asset.balance.toFixed(4)}</div>
