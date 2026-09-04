@@ -241,11 +241,13 @@
         .logo-icon {
             width: 34px;
             height: 34px;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 10px;
             display: inline-block;
-            background: transparent;
+            background: #ffffff;
+            border: 2px solid rgba(32, 201, 151, 0.7);
             padding: 0;
+            box-sizing: border-box;
             box-shadow: 0 4px 12px rgba(32, 201, 151, 0.14);
         }
         .logo span {
@@ -993,12 +995,11 @@
                 grid.innerHTML = assets.map(asset => `
                     <div class="asset-card" onclick="openDepositModal('${asset.symbol}')">
                         <div class="asset-icon ${asset.icon}">
-                            <i class="fab fa-${asset.icon === 'btc' ? 'bitcoin' : 
+                            <i class="${asset.icon === 'sol' ? 'fas fa-bolt' : `fab fa-${asset.icon === 'btc' ? 'bitcoin' : 
                                         asset.icon === 'eth' ? 'ethereum' : 
                                         asset.icon === 'xrp' ? 'fa-water' : 
-                                        asset.icon === 'sol' ? 'fa-bolt' : 
                                         asset.icon === 'ada' ? 'fa-database' : 
-                                        asset.icon === 'usdt' ? 'fa-dollar-sign' : 'fa-coins'}"></i>
+                                        asset.icon === 'usdt' ? 'fa-dollar-sign' : 'fa-coins'}`}"></i>
                         </div>
                         <div class="asset-symbol">${asset.symbol}</div>
                         <div class="asset-balance">${asset.balance.toFixed(4)}</div>
